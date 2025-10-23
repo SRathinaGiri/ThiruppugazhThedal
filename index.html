@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>திருப்புகழ் தேடல்</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f4f4f4" id="theme-color-meta-light" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#121212" id="theme-color-meta-dark" media="(prefers-color-scheme: dark)">
+</head>
+<body>
+
+    <header>
+        <button id="toggle-filters-button">☰ வடிப்பான்கள்</button>
+        <img  style="width:auto;height: 50px;" src="murugan.png">
+        <img  style="width:auto;height: 80%;" src="main_title_icon.png">
+        <img  style="width:auto;height: 50px;" src="arunagiri.png">
+    </header>
+
+    <div class="container">
+        <aside id="left-panel">
+            <div id="install-card" class="card hidden">
+                <button id="install-button">செயலியை நிறுவவும்</button>
+            </div>
+
+            <div class="card filters">
+                <h2>திருப்புகழ் தேடல்</h2>
+                
+                <div class="search-reset-buttons">
+                    <button id="search-button">தேடு</button>
+                    <button id="clear-filters-button" class="outline">அழி</button>
+                </div>
+
+                <div class="sub-panel">
+                    <h3>பாடல் எண் / சொல் தேடல்</h3>
+                    <div class="filter-group">
+                        <label for="song-number-input">பாடல் எண்</label>
+                        <input type="number" id="song-number-input" min="1" max="1334" placeholder="எ.கா: 1 முதல் 1334 வரை">
+                    </div>
+                    <div class="filter-group">
+                        <label for="search-box">சொல்</label>
+                        <input type="text" id="search-box" placeholder="ஒரு சொல்லை உள்ளிடவும்...">
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="sub-panel">
+                    <h3>தலம் வாரியாக</h3>
+                    <div class="filter-group">
+                        <label for="places-select">தலம்</label>
+                        <select id="places-select" class="dropdown">
+                            <option value="">-- தலம் தேர்ந்தெடு --</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="place-songs-select">தலப் பாடல்கள்</label>
+                        <select id="place-songs-select" class="dropdown" disabled>
+                            <option value="">-- முதலில் தலம் தேர்ந்தெடு --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="sub-panel">
+                    <h3>அகரமுதலி</h3>
+                    <div class="filter-group">
+                        <label for="agaram-group-select">எழுத்து வகை</label>
+                        <select id="agaram-group-select" class="dropdown">
+                            <option value="">-- வகை தேர்ந்தெடு --</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="agaram-letter-select">எழுத்து</label>
+                        <select id="agaram-letter-select" class="dropdown" disabled>
+                            <option value="">-- முதலில் வகையைத் தேர்ந்தெடு --</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="agaram-song-select">பாடல்</label>
+                        <select id="agaram-song-select" class="dropdown" disabled>
+                            <option value="">-- முதலில் எழுத்து தேர்ந்தெடு --</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <div class="sub-panel">
+                    <h3>விருப்பப் பாடல்கள்</h3>
+                    <div class="filter-group">
+                        <label for="favs-select">சேமித்த பாடல்கள்</label>
+                        <select id="favs-select" class="dropdown">
+                            <option value="">-- பாடலைத் தேர்ந்தெடு --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card filters">
+                <h2>பிற நூல்கள்</h2>
+                <div class="filter-group">
+                    <label for="other-books-select">நூல் தேர்ந்தெடு</label>
+                    <select id="other-books-select" class="dropdown">
+                        <option value="">-- நூல் தேர்ந்தெடு --</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="other-book-song-select">பாடல் தலைப்பு</label>
+                    <select id="other-book-song-select" class="dropdown" disabled>
+                        <option value="">-- முதலில் நூல் தேர்ந்தெடு --</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="card nav-card">
+                <button id="show-about-button">தகவல்</button>
+            </div>
+            
+            <div class="card theme-card">
+                <h2>அமைப்பு</h2>
+                <button id="theme-toggle-button" class="outline">பின்னணி நிறம்: அடர்</button>
+            </div>
+
+        </aside>
+
+        <main id="right-panel">
+            
+            <div id="fav-checkbox-container" class="fav-checkbox-container hidden">
+                <input type="checkbox" id="fav-checkbox">
+                <label for="fav-checkbox">விருப்பப் பாடலில் சேமி</label>
+            </div>
+
+            <div id="pagination-container" class="hidden">
+                <button id="prev-button">முன்</button>
+                <span id="page-info"></span>
+                <button id="next-button">பின்</button>
+            </div>
+            <div id="results-container">
+                </div>
+        </main>
+    </div>
+    
+    <div id="overlay" class="hidden"></div>
+
+    <footer>
+        <p>ஒருங்கிணைப்பு: <strong>சுப. இரத்தினகிரி</strong></p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

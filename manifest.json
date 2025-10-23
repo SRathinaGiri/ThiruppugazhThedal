@@ -1,0 +1,21 @@
+{
+    "name": "திருப்புகழ் தேடல்",
+    "short_name": "திருப்புகழ்",
+    "description": "திருப்புகழ் மற்றும் பிற நூல்களைத் தேட",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "icons": [
+        {
+            "src": "omicon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "omicon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

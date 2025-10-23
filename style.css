@@ -1,0 +1,298 @@
+/* --- CSS Variables (Light Theme by default) --- */
+:root {
+    --color-bg: #f4f4f4;
+    --color-text: #222;
+    --color-text-light: #555;
+    --color-accent: #1E90FF;
+    --color-card-bg: #ffffff;
+    --color-border: #ddd;
+    --color-header-bg: #fdfdfd;
+    --panel-width: 320px; /* Panel width */
+}
+
+/* --- Dark Theme Variables --- */
+body.dark {
+    --color-bg: #121212;
+    --color-text: #eee;
+    --color-text-light: #bbb;
+    --color-accent: #BB86FC;
+    --color-card-bg: #1e1e1e;
+    --color-border: #333;
+    --color-header-bg: #1e1e1e;
+}
+
+/* --- Basic Layout --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    background-color: var(--color-header-bg);
+    color: var(--color-accent);
+    padding: 0 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--color-border);
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+header h1 {
+    font-size: 1.2em;
+}
+
+/* --- Filter Toggle Button --- */
+#toggle-filters-button {
+    position: absolute;
+    left: 10px;
+    background: none;
+    border: none;
+    color: var(--color-accent);
+    font-size: 1em;
+    font-weight: bold;
+    padding: 10px;
+    width: auto;
+    margin: 0;
+}
+
+/* --- Mobile-First Panel Layout --- */
+.container {
+    display: flex;
+}
+
+aside#left-panel {
+    position: fixed;
+    left: calc(-1 * var(--panel-width));
+    top: 0;
+    bottom: 0;
+    width: var(--panel-width);
+    z-index: 100;
+    transition: left 0.3s ease-in-out;
+    overflow-y: auto;
+    background-color: var(--color-bg);
+    border-right: 1px solid var(--color-border);
+    padding: 10px;
+}
+
+main#right-panel {
+    flex: 1;
+    padding: 10px;
+    min-width: 100%;
+}
+
+/* --- Panel Visible State --- */
+body.panel-visible aside#left-panel {
+    left: 0;
+}
+
+body.panel-visible #overlay {
+    display: block;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 99;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-light);
+    font-size: 0.9em;
+}
+
+/* --- Cards --- */
+.card {
+    background-color: var(--color-card-bg);
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.card h2 {
+    font-size: 1.2em;
+    color: var(--color-accent);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* NEW: Sub-panel header */
+.sub-panel h3 {
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--color-text-light);
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 25px 0;
+}
+
+/* --- Form Elements --- */
+.filter-group {
+    margin-bottom: 15px;
+}
+
+.filter-group label {
+    display: block;
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    color: var(--color-text-light);
+}
+
+input[type="text"],
+input[type="number"],
+select.dropdown {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    border-radius: 5px;
+}
+
+select.dropdown[disabled] {
+    opacity: 0.5;
+}
+
+/* --- Buttons --- */
+button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--color-accent);
+    color: white;
+    margin-top: 10px;
+}
+
+button.outline {
+    background-color: transparent;
+    border: 2px solid var(--color-accent);
+    color: var(--color-accent);
+}
+
+.nav-card button {
+    background-color: var(--color-control-bg);
+    color: var(--color-accent);
+    border: 1px solid var(--color-border);
+}
+
+/* NEW: Search/Reset Button Container */
+.search-reset-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.search-reset-buttons button {
+    margin-top: 0;
+}
+
+/* --- Song Results --- */
+#results-container {
+    background-color: var(--color-card-bg);
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    padding: 10px;
+    min-height: 400px;
+}
+
+.song-card {
+    padding: 15px;
+    border-bottom: 1px solid var(--color-border);
+}
+.song-card:last-child {
+    border-bottom: none;
+}
+
+.song-title {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: var(--color-accent);
+    margin-bottom: 10px;
+}
+
+pre.song-content {
+    white-space: pre-wrap;
+    font-size: 1.1em;
+    line-height: 1.8;
+    font-family: inherit;
+    color: var(--color-text);
+}
+
+.hidden {
+    display: none !important; /* Use !important to override other display rules */
+}
+/* NEW: Favorite Checkbox Style */
+.fav-checkbox-container {
+    padding: 10px 15px;
+    background-color: var(--color-card-bg);
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.fav-checkbox-container input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+.fav-checkbox-container label {
+    font-weight: bold;
+    color: var(--color-accent);
+}
+
+/* --- Desktop/Tablet Layout --- */
+@media (min-width: 768px) {
+    #toggle-filters-button {
+        display: none;
+    }
+    aside#left-panel {
+        position: relative;
+        left: 0;
+        height: auto;
+        z-index: 1;
+        flex: 1;
+        min-width: var(--panel-width);
+    }
+    main#right-panel {
+        flex: 2;
+        min-width: 300px;
+    }
+    #overlay {
+        display: none !important;
+    }
+}
