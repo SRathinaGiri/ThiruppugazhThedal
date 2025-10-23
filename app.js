@@ -1,6 +1,8 @@
 // --- Wait for the app to be fully loaded ---
 document.addEventListener('DOMContentLoaded', () => {
-
+    const installCard = document.getElementById('install-card');
+    const installButton = document.getElementById('install-button');
+    let deferredInstallPrompt = null; // To store the install event
 
     window.addEventListener('beforeinstallprompt', (event) => {
         // Prevent the mini-infobar from appearing on mobile
@@ -8,7 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Stash the event so it can be triggered later.
         deferredInstallPrompt = event;
         // Show the install button now that we know it's installable
-        installCard.classList.remove('hidden');
+        if (installCard) {
+            installCard.classList.remove('hidden');
+        }
         console.log("PWA install prompt available.");
     });
     
@@ -26,16 +30,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // We've used the prompt, it can't be used again.
         deferredInstallPrompt = null;
         // Hide the install button after prompting
-        installCard.classList.add('hidden');
+        if (installCard) {
+            installCard.classList.add('hidden');
+        }
     }
-    
+
     // Listen for the app installed event
     window.addEventListener('appinstalled', () => {
         console.log('PWA was installed');
         // Hide the install button permanently if installed
-        installCard.classList.add('hidden');
+        if (installCard) {
+            installCard.classList.add('hidden');
+        }
         deferredInstallPrompt = null; // Clear any leftover prompt event
-    });    
+    });
 
     // --- Global Data Storage ---
     let allSongs = [];
@@ -43,9 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let allSongPlaces = [];
     let allOtherBooks = {};
     let favorites = []; // NEW: Array to hold favorite song IDs
-    const installCard = document.getElementById('install-card');
-    const installButton = document.getElementById('install-button');
-    let deferredInstallPrompt = null; // To store the install event    
 
     // --- Agaram (Alphabetical) Data ---
     const agaramData = {
@@ -208,7 +213,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Favorites Dropdown & Checkbox
         favsSelect.addEventListener('change', displaySelectedFavorite); // NEW
         favCheckbox.addEventListener('change', handleFavoriteToggle); // NEW
-        installButton.addEventListener('click', handleInstallClick);        
+        if (installButton) {
+            installButton.addEventListener('click', handleInstallClick);
+        }
     }
     
     // --- 5. Filter/Render Functions ---
